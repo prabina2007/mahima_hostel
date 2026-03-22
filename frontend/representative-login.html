@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Representative Login - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./auth.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <main class="auth-page">
+      <section class="auth-shell">
+        <aside class="auth-cover">
+          <div class="auth-cover-copy">
+            <h1 class="auth-cover-title">mahima chatrabas</h1>
+            <p class="auth-cover-tagline">Representative meal attendance and daily service tracking.</p>
+          </div>
+        </aside>
+
+        <section class="auth-panel">
+          <div class="auth-card">
+            <div class="auth-heading">
+              <h2>representative login</h2>
+              <p>Track meal pickup without changing admin meal counts</p>
+            </div>
+
+            <form id="representativeLoginForm" class="auth-form">
+              <input name="username" placeholder="Username" required />
+              <input type="password" name="password" placeholder="Password" required />
+              <button class="auth-button" type="submit">Open representative panel</button>
+            </form>
+
+            <div class="auth-links">
+              <a href="./signin.html">Student login</a>
+              <a href="./admin-login.html">Admin login</a>
+              <a href="./index.html">Back to home</a>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Representative Panel - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./representative-dashboard.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading representative panel...</p>
+    </div>
+
+    <div class="rep-app">
+      <aside class="rep-sidebar">
+        <div>
+          <h1>MealMate Rep</h1>
+          <p>Daily pickup tracking</p>
+        </div>
+        <nav class="rep-nav">
+          <a href="#overview">Overview</a>
+          <a href="#records">Student Meal Status</a>
+          <a href="#footerSection">Footer</a>
+        </nav>
+      </aside>
+
+      <main class="rep-main">
+        <header class="rep-topbar">
+          <div>
+            <p class="rep-eyebrow">Representative Panel</p>
+            <h2>Current Date Meal Pickup Status</h2>
+            <p id="repDateLabel">Today</p>
+            <p class="rep-unlock-note">Lunch status unlocks at 8:00 AM. Dinner status unlocks at 2:30 PM.</p>
+          </div>
+          <div class="rep-topbar-actions">
+            <button id="downloadLunchPdfBtn" type="button">Lunch PDF</button>
+            <button id="downloadDinnerPdfBtn" type="button">Dinner PDF</button>
+            <button id="repHomeBtn" type="button">Home</button>
+            <button id="repLogoutBtn" type="button">Logout</button>
+          </div>
+        </header>
+
+        <section class="rep-hero" id="overview">
+          <article class="rep-stat-card">
+            <span>Total Planned Meals</span>
+            <strong id="totalMeals">0</strong>
+          </article>
+          <article class="rep-stat-card soft-green">
+            <span>Total Veg Meals</span>
+            <strong id="vegMeals">0</strong>
+          </article>
+          <article class="rep-stat-card soft-orange">
+            <span>Total Non-Veg Meals</span>
+            <strong id="nonVegMeals">0</strong>
+          </article>
+          <article class="rep-stat-card soft-blue">
+            <span>Meals Marked Taken</span>
+            <strong id="mealsTaken">0</strong>
+          </article>
+        </section>
+
+        <section class="rep-card" id="records">
+          <div class="rep-card-head">
+            <div>
+              <h3>Student Meal Status</h3>
+              <p>Representative tracking is limited to the current date. PDF buttons unlock only after the same lunch and dinner report times used in the admin panel.</p>
+            </div>
+            <input id="repSearch" type="search" placeholder="Search by room, name, or phone" />
+          </div>
+
+          <div class="rep-table-wrap">
+            <table class="rep-table">
+              <thead>
+                <tr>
+                  <th>Room</th>
+                  <th>Student Name</th>
+                  <th>Phone</th>
+                  <th>Lunch</th>
+                  <th>Lunch Type</th>
+                  <th>Lunch Taken</th>
+                  <th>Dinner</th>
+                  <th>Dinner Type</th>
+                  <th>Dinner Taken</th>
+                  <th>Total Meals</th>
+                </tr>
+              </thead>
+              <tbody id="repTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="rep-footer" id="footerSection">
+      <div>
+        <h3>mahima chatrabas</h3>
+        <p>Representative-side meal pickup tracking for daily hostel operations.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="./index.html">Home</a>
+        <a href="./admin-login.html">Admin Login</a>
+        <a href="./representative-login.html">Representative Login</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Dhenkanal, Odisha, India</p>
+        <p>MAHIMA CHATRABAS service desk</p>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./representative-dashboard.js"></script>
+  </body>
+</html>
+

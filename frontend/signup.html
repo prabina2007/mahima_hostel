@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./auth.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <main class="auth-page">
+      <section class="auth-shell">
+        <aside class="auth-cover">
+          <div class="auth-cover-copy">
+            <h1 class="auth-cover-title">mahima chatrabas</h1>
+            <p class="auth-cover-tagline">Reserve your hostel profile and sync your daily meals.</p>
+          </div>
+        </aside>
+
+        <section class="auth-panel">
+          <div class="auth-card">
+            <div class="auth-heading">
+              <h2>sign up</h2>
+              <p>Create your hostel account</p>
+            </div>
+
+            <form id="signupForm" class="auth-form">
+              <input name="studentName" placeholder="Student Name" required />
+              <input type="email" name="email" placeholder="Email ID" required />
+              <input type="tel" name="phoneNumber" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" required />
+              <div class="auth-grid">
+                <input name="roomNumber" placeholder="Room Number" required />
+                <select name="bed" required>
+                  <option value="">Select Bed</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                </select>
+              </div>
+              <input name="rollNumber" placeholder="College Roll Number" required />
+              <input type="password" name="password" placeholder="Password" required />
+              <select name="defaultPreference" required>
+                <option value="veg">Veg</option>
+                <option value="non-veg">Non-Veg</option>
+              </select>
+              <div class="auth-grid">
+                <button id="requestOtpBtn" class="auth-button secondary" type="button">Request OTP</button>
+                <input name="otp" placeholder="Enter OTP" required />
+              </div>
+              <p class="form-note">OTP will be sent only to the registered email address.</p>
+              <button class="auth-button" type="submit">Create account</button>
+            </form>
+
+            <div class="auth-links">
+              <a href="./signin.html">Already have an account? Sign in</a>
+              <a href="./admin-login.html">Admin login</a>
+              <a href="./index.html">Back to home</a>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./auth.js"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading dashboard...</p>
+    </div>
+
+    <div class="dashboard-page">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <img src="./assets/logo.jpg" alt="Mahima logo" />
+          <div>
+            <h1>MAHIMA CHATRABAS</h1>
+            <p>Student Meal Console</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-avatar" id="studentAvatar">S</div>
+          <h2 id="sidebarName">Student Name</h2>
+          <p id="sidebarRoom">Room -</p>
+          <span class="badge" id="sidebarPref">Veg</span>
+        </div>
+
+        <p class="sidebar-label">Menu</p>
+        <nav class="sidebar-nav">
+          <a href="#overview" class="nav-link active">Overview</a>
+          <a href="#profile" class="nav-link">Profile</a>
+          <a href="#quickControls" class="nav-link">Today Controls</a>
+          <a href="#summary" class="nav-link">Summary</a>
+          <a href="#mealCalendar" class="nav-link">Calendar</a>
+          <a href="#footerSection" class="nav-link">Footer</a>
+        </nav>
+
+        <div class="sidebar-meta">
+          <p class="sidebar-label">Quick Notes</p>
+          <div class="meta-card">
+            <span>Lunch cutoff</span>
+            <strong>Before 8:00 AM</strong>
+          </div>
+          <div class="meta-card">
+            <span>Dinner cutoff</span>
+            <strong>Before 2:30 PM</strong>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="top-search-shell">
+            <span class="search-icon">&#8981;</span>
+            <input id="topSearchInput" type="text" placeholder="Search dashboard sections like profile, calendar, summary..." />
+          </div>
+          <div class="topbar-actions">
+            <div class="top-pref-control">
+              <select id="defaultPreferenceSelect" class="month-pref-select top-pref-select">
+                <option value="veg">Veg</option>
+                <option value="non-veg">Non-Veg</option>
+              </select>
+              <button id="saveDefaultPreferenceBtn" class="ghost-btn" type="button">Save Preference</button>
+            </div>
+            <div class="status-pill-live">
+              <span class="status-dot"></span>
+              <span>Meal Access Active</span>
+            </div>
+            <button id="topRefreshBtn" class="ghost-btn" type="button">Refresh</button>
+            <button id="jumpTodayBtn" class="ghost-btn" type="button">Today</button>
+            <button id="homeBtn" class="ghost-btn link-btn" type="button">Home</button>
+            <button id="topLogoutBtn" class="ghost-btn logout-top-btn" type="button">Logout</button>
+          </div>
+        </header>
+
+        <section class="hero-card" id="overview">
+          <div>
+            <p class="eyebrow dark">Student Dashboard</p>
+            <h2>Welcome back, <span id="topbarName">Student</span></h2>
+            <p class="hero-copy">
+              Manage your daily meals, update your monthly food preference, and keep track of your hostel dining summary from one place.
+            </p>
+          </div>
+          <div class="hero-badge-stack">
+            <div class="hero-badge-card">
+              <span>Room / Bed</span>
+              <strong id="heroRoom">-</strong>
+            </div>
+            <div class="hero-badge-card light">
+              <span>Default Preference</span>
+              <strong id="heroPreference">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="notice-card">
+          <div class="notice-icon">i</div>
+          <div>
+            <h3>Important Hostel Meal Notice</h3>
+            <p>
+              Lunch can be changed only before 8:00 AM and dinner before 2:30 PM. All meals remain ON by default unless you change them.
+            </p>
+          </div>
+        </section>
+
+        <section class="stat-grid" id="summary">
+          <article class="stat-box green">
+            <span>Total Meals</span>
+            <strong id="totalMeals">0</strong>
+            <small>Meals counted till today</small>
+          </article>
+          <article class="stat-box light">
+            <span>Total Veg</span>
+            <strong id="vegMeals">0</strong>
+            <small>Veg meals till date</small>
+          </article>
+          <article class="stat-box light-alt">
+            <span>Total Non-Veg</span>
+            <strong id="nonVegMeals">0</strong>
+            <small>Non-veg meals till date</small>
+          </article>
+          <article class="stat-box soft">
+            <span>This Month Meals</span>
+            <strong id="monthMeals">0</strong>
+            <small>Completed days only</small>
+          </article>
+          <article class="stat-box green bill-stat-box">
+            <span>Total Bill</span>
+            <strong id="totalBill">Rs 0.00</strong>
+            <small id="currentMonthRateLabel">Current month rate: Rs 0.00/meal</small>
+            <button id="viewBillDetailsBtn" class="tiny-btn bill-details-btn" type="button">View Bill Details</button>
+          </article>
+        </section>
+
+        <section class="dashboard-grid-panels">
+          <section class="content-card profile-card" id="profile">
+            <div class="section-title">
+              <div>
+                <h3>Profile Details</h3>
+                <p class="section-copy">Your room, email, roll number, and current meal preference.</p>
+              </div>
+              <button id="refreshProfileBtn" class="tiny-btn" type="button">Refresh Profile</button>
+            </div>
+            <div class="profile-table-wrap">
+              <table class="profile-table">
+                <tbody>
+                  <tr>
+                    <th>Student Name</th>
+                    <td id="profileName">-</td>
+                    <th>Room / Bed</th>
+                    <td id="profileRoom">-</td>
+                  </tr>
+                  <tr>
+                    <th>Roll Number</th>
+                    <td id="profileRoll">-</td>
+                    <th>Email ID</th>
+                    <td id="profileEmail">-</td>
+                  </tr>
+                  <tr>
+                    <th>Default Preference</th>
+                    <td id="profilePref">-</td>
+                    <th>Account Created</th>
+                    <td id="profileCreated">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </section>
+
+          <section class="content-card success-card" id="notices">
+            <div class="success-icon">&#10003;</div>
+            <div>
+              <h3>Meal Access Active</h3>
+              <p>Your meal controls are active. Use today controls for the current date and the calendar for future planning.</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="content-card controls-card" id="quickControls">
+          <div class="section-title">
+            <div>
+              <h3>Today Meal Controls</h3>
+              <p class="section-copy">Update today's meals within the allowed cutoff time.</p>
+            </div>
+            <button id="todayResetBtn" class="tiny-btn" type="button">Reset To Default</button>
+          </div>
+          <div class="today-grid">
+            <article class="today-meal">
+              <div class="today-header">
+                <h4>Lunch</h4>
+                <span id="todayLunchStatus" class="status-pill">Locked</span>
+              </div>
+              <label class="switch-row">
+                <span>Enable Lunch</span>
+                <input id="todayLunchEnabled" type="checkbox" />
+              </label>
+              <select id="todayLunchType">
+                <option value="veg">Veg</option>
+                <option value="non-veg">Non-Veg</option>
+              </select>
+              <button id="saveLunchBtn" class="primary-btn" type="button">Save Lunch</button>
+            </article>
+
+            <article class="today-meal">
+              <div class="today-header">
+                <h4>Dinner</h4>
+                <span id="todayDinnerStatus" class="status-pill">Locked</span>
+              </div>
+              <label class="switch-row">
+                <span>Enable Dinner</span>
+                <input id="todayDinnerEnabled" type="checkbox" />
+              </label>
+              <select id="todayDinnerType">
+                <option value="veg">Veg</option>
+                <option value="non-veg">Non-Veg</option>
+              </select>
+              <button id="saveDinnerBtn" class="primary-btn" type="button">Save Dinner</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-card calendar-card" id="mealCalendar">
+          <div class="section-title calendar-title">
+            <div>
+              <h3>Monthly Meal Calendar</h3>
+              <p class="section-copy">Set your meal preference for the visible month and update individual dates.</p>
+            </div>
+            <div class="calendar-toolbar">
+              <select id="monthPreferenceSelect" class="month-pref-select">
+                <option value="veg">Set Month: Veg</option>
+                <option value="non-veg">Set Month: Non-Veg</option>
+              </select>
+              <button id="applyMonthPreferenceBtn" class="primary-btn" type="button">Apply To Visible Month</button>
+              <button id="prevMonthBtn" class="tiny-btn" type="button">Prev</button>
+              <span id="monthLabel">Month</span>
+              <button id="nextMonthBtn" class="tiny-btn" type="button">Next</button>
+            </div>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="dashboard-footer" id="footerSection">
+      <div class="dashboard-footer-main">
+        <div class="dashboard-footer-block">
+          <h3>mahima chatrabas</h3>
+          <p>Student meal controls, monthly planning, and hostel dining updates in one clean dashboard.</p>
+        </div>
+
+        <div class="dashboard-footer-block">
+          <h3>Quick Links</h3>
+          <div class="dashboard-footer-links">
+            <a href="#overview">Overview</a>
+            <a href="#profile">Profile</a>
+            <a href="#quickControls">Today Controls</a>
+            <a href="#mealCalendar">Meal Calendar</a>
+            <a href="#summary">Meal Summary</a>
+          </div>
+        </div>
+
+        <div class="dashboard-footer-block">
+          <h3>Contact</h3>
+          <p>Email: support@mahimachatrabas.local</p>
+          <p>Location: Dhenkanal, Odisha, India</p>
+        </div>
+      </div>
+
+      <div class="dashboard-footer-bottom">
+        <p>(c) 2026 MAHIMA CHATRABAS | All rights reserved</p>
+      </div>
+    </footer>
+
+    <div id="billDetailsModal" class="bill-modal hidden">
+      <div class="bill-modal-backdrop" data-close-bill-modal="true"></div>
+      <div class="bill-modal-card">
+        <div class="bill-modal-head">
+          <div>
+            <h3>Bill Details</h3>
+            <p>Month-wise meal count, rate, and bill summary.</p>
+          </div>
+          <button id="closeBillDetailsBtn" class="ghost-btn" type="button">Close</button>
+        </div>
+        <div class="bill-summary-strip">
+          <div>
+            <span>Total Bill</span>
+            <strong id="billModalTotal">Rs 0.00</strong>
+          </div>
+        </div>
+        <div id="billDetailsList" class="bill-details-list"></div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./dashboard.js"></script>
+  </body>
+</html>
+
+
+
+
+
+

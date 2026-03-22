@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAHIMA CHATRABAS - Meal Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="./assets/logo.jpg" alt="Mahima logo" />
+        </div>
+        <span>mahima chatrabas</span>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-pill active" href="#home">Home</a>
+        <a class="nav-pill" href="#about">About</a>
+        <a class="nav-pill" href="#facilities">Facilities</a>
+        <a class="nav-pill" href="#rules">Rules</a>
+        <a class="nav-pill" href="#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button id="themeToggle" class="btn pill ghost">Theme</button>
+        <a class="btn pill ghost" href="./admin-login.html">Admin</a>
+        <a class="btn pill ghost" href="./representative-login.html">Representative</a>
+        <a class="btn pill primary" href="./signin.html">Login</a>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-image"></div>
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <p class="hero-kicker">Hostel Meal Management Portal</p>
+        <h1>MAHIMA CHATRABAS</h1>
+        <p class="subtitle">A signature hostel meal system for attendance, food preference, and daily planning.</p>
+        <p class="location">Dhenkanal(Auto) College, Dhenkanal, Odisha, India</p>
+        <div class="hero-actions">
+          <a class="btn primary large hero-primary" href="./signup.html">Let's create your account</a>
+          <a class="btn ghost large hero-ghost" href="./student-dashboard.html">Open Dashboard</a>
+        </div>
+        <div class="hero-search">
+          <input type="text" placeholder="Search facilities, rules or hostel info" />
+          <button class="btn primary search-btn" type="button">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="section reveal menu-highlight" id="menu">
+        <div class="menu-copy">
+          <p class="menu-kicker">Hostel Menu</p>
+          <h2>Meal Menu Preview</h2>
+          <p>Daily meal updates, rotating veg and non-veg options, and a clean dining experience for students.</p>
+        </div>
+        <div class="menu-image-wrap">
+          <img src="./assets/menu.jpg" alt="Hostel meal menu" class="menu-image" />
+        </div>
+      </section>
+
+      <section class="section about reveal" id="about">
+        <h2>About Hostel Team</h2>
+        <div class="team-grid">
+          <article class="card">
+            <img src="./assets/robert.jpg" alt="Robert W. Bhtra" />
+            <h3>Robert W. Bhtra</h3>
+            <p>Superintendent</p>
+          </article>
+          <article class="card">
+            <img src="./assets/prabina.JPG" alt="Prabina Kumar Sahu" />
+            <h3>Prabina Kumar Sahu</h3>
+            <p>Assistant Superintendent</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="facilities">
+        <h2>Facilities</h2>
+        <div class="pill-grid">
+          <span>Nutritious Lunch & Dinner</span>
+          <span>Clean Dining Hall</span>
+          <span>Filtered Drinking Water</span>
+          <span>Hostel Security</span>
+          <span>Monthly Meal Analytics</span>
+          <span>Digital Meal Toggle</span>
+        </div>
+      </section>
+
+      <section class="section reveal" id="rules">
+        <h2>Rules & Regulations</h2>
+        <ul class="rules">
+          <li>Lunch toggle allowed only before 8:00 AM of the meal date.</li>
+          <li>Dinner toggle allowed only before 2:30 PM of the meal date.</li>
+          <li>Room and bed allocation is unique and cannot be duplicated.</li>
+          <li>Students must maintain correct veg/non-veg preference updates.</li>
+        </ul>
+      </section>
+
+      <section class="section reveal" id="contact">
+        <h2>Contact Info</h2>
+        <p>Email: support@mahimachatrabas.local</p>
+        <p>Phone: +91 00000 00000</p>
+        <p>Address: Dhenkanal(Auto) College, Dhenkanal, Odisha, India</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand-block">
+          <h3>mahima chatrabas</h3>
+          <p>Meal planning, hostel coordination, and student dining updates made simple every day.</p>
+        </div>
+
+        <div class="footer-links-block">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#rules">Rules</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-contact-block">
+          <h3>Contact</h3>
+          <p>Email: support@mahimachatrabas.local</p>
+          <p>Location: Dhenkanal, Odisha, India</p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="YouTube">YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>(c) 2026 MAHIMA CHATRABAS | All rights reserved</p>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+

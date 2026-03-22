@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Sign In - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./auth.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <main class="auth-page">
+      <section class="auth-shell">
+        <aside class="auth-cover">
+          <div class="auth-cover-copy">
+            <h1 class="auth-cover-title">mahima chatrabas</h1>
+            <p class="auth-cover-tagline">Manage your meals. Stay updated every day.</p>
+          </div>
+        </aside>
+
+        <section class="auth-panel">
+          <div class="auth-card">
+            <div class="auth-heading">
+              <h2>sign in</h2>
+              <p>Welcome back</p>
+            </div>
+
+            <form id="studentLoginForm" class="auth-form">
+              <div class="auth-grid">
+                <input name="roomNumber" placeholder="Room Number" required />
+                <select name="bed" required>
+                  <option value="">Select Bed</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                </select>
+              </div>
+              <input type="password" name="password" placeholder="Password" required />
+              <button class="auth-button" type="submit">Sign in</button>
+            </form>
+
+            <div class="auth-links">
+              <a href="./signup.html">No account? Create account</a>
+              <a href="./admin-login.html">Admin login</a>
+              <a href="./index.html">Back to home</a>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./auth.js"></script>
+  </body>
+</html>

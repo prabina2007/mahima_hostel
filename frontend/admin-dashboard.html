@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - MAHIMA CHATRABAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./admin-dashboard.css" />
+  </head>
+  <body>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Loading admin dashboard...</p>
+    </div>
+
+    <div class="admin-shell">
+      <aside class="admin-sidebar">
+        <div class="admin-brand-block">
+          <div class="admin-brand-mark">
+            <img src="./assets/logo.jpg" alt="Mahima logo" />
+          </div>
+          <div class="admin-brand-copy">
+            <h1>MAHIMA CHATRABAS</h1>
+            <p>Admin Panel V3.0</p>
+          </div>
+        </div>
+
+        <div class="admin-badge-card">
+          <div class="admin-avatar">A</div>
+          <div>
+            <h2>Hostel Admin</h2>
+            <p>Meal planning, approvals, reports, and live hostel records in one control space.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-group">
+          <p class="sidebar-label">Overview</p>
+          <nav class="admin-nav">
+            <a href="#overview" class="admin-nav-link active"><span class="nav-icon">D</span><span>Dashboard</span></a>
+            <a href="#studentsSection" class="admin-nav-link"><span class="nav-icon">S</span><span>Students</span></a>
+            <a href="#mealControlSection" class="admin-nav-link"><span class="nav-icon">M</span><span>Meal Control</span></a>
+          </nav>
+        </div>
+
+        <div class="sidebar-group">
+          <p class="sidebar-label">Operations</p>
+          <nav class="admin-nav">
+            <a href="#reportsSection" class="admin-nav-link"><span class="nav-icon">R</span><span>Reports</span></a>
+            <a href="#daySearchSection" class="admin-nav-link"><span class="nav-icon">D</span><span>Day Search</span></a>
+              <a href="#mealRateSection" class="admin-nav-link"><span class="nav-icon">P</span><span>Meal Rate</span></a>
+            <a href="#footerSection" class="admin-nav-link"><span class="nav-icon">F</span><span>Footer</span></a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-meta">
+          <div class="meta-card">
+            <span>Today reports</span>
+            <strong>Lunch + Dinner PDF</strong>
+          </div>
+          <div class="meta-card">
+            <span>Student order</span>
+            <strong>Room ascending, A before B</strong>
+          </div>
+        </div>
+
+        <div class="sidebar-admin-card">
+          <div class="sidebar-admin-avatar">AK</div>
+          <div>
+            <strong>Hostel Administrator</strong>
+            <span>Meal operations center</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-topbar" id="overview">
+          <div class="topbar-title-group">
+            <p class="topbar-label">Dashboard</p>
+            <h2>Hostel Meal Command Center</h2>
+            <span id="dashboardMeta" class="topbar-meta">Live hostel records and meal operations</span>
+          </div>
+
+          <div class="topbar-search-group">
+            <div class="admin-search-shell">
+              <span class="search-icon">&#8981;</span>
+              <input id="topSearchInput" type="text" placeholder="Search students, records, room or roll..." />
+            </div>
+          </div>
+
+          <div class="admin-topbar-actions">
+            <div class="admin-status-pill">
+              <span class="status-dot"></span>
+              <span>System Active</span>
+            </div>
+            <button id="topRefreshBtn" class="ghost-btn icon-btn" type="button">Refresh</button>
+            <button id="topHomeBtn" class="ghost-btn icon-btn" type="button">Home</button>
+            <button id="topLogoutBtn" class="ghost-btn logout-btn" type="button">Logout</button>
+            <a href="#studentsSection" class="primary-link-btn">Student Records</a>
+          </div>
+        </header>
+
+        <section class="admin-showcase-grid">
+          <section class="admin-hero-card">
+            <div>
+              <p class="eyebrow dark">MAHIMA Control Board</p>
+              <h3>Powerful administration for hostel meals, approvals, and reports.</h3>
+              <p class="hero-copy">
+                Compare live student data, control meals in bulk, and generate daily lunch and dinner reports from a faster, more structured workspace.
+              </p>
+            </div>
+            <div class="hero-badge-stack">
+              <div class="hero-badge-card success">
+                <span>Hostel</span>
+                <strong>MAHIMA CHATRABAS</strong>
+              </div>
+              <div class="hero-badge-card light">
+                <span>Location</span>
+                <strong>Dhenkanal, Odisha</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-notice-card">
+            <div class="notice-icon">i</div>
+            <div>
+              <h3>Daily Admin Notice</h3>
+              <p>Use the report section after the allowed times to download lunch and dinner PDF summaries for the selected date.</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-stat-grid">
+          <article class="admin-stat-card stat-green">
+            <div class="stat-icon-wrap">TS</div>
+            <span>Total Students</span>
+            <strong id="totalStudentsCount">0</strong>
+            <small>Active hostel accounts</small>
+            <div class="stat-progress"><span></span></div>
+          </article>
+          <article class="admin-stat-card stat-mint">
+            <div class="stat-icon-wrap">VG</div>
+            <span>Veg Preference</span>
+            <strong id="vegStudentsCount">0</strong>
+            <small>Students on veg plan</small>
+            <div class="stat-progress"><span></span></div>
+          </article>
+          <article class="admin-stat-card stat-amber">
+            <div class="stat-icon-wrap">PD</div>
+            <span>Pending Approval</span>
+            <strong id="pendingStudentsCount">0</strong>
+            <small>Students waiting for review</small>
+            <div class="stat-progress"><span></span></div>
+          </article>
+          <article class="admin-stat-card stat-blue">
+            <div class="stat-icon-wrap">NV</div>
+            <span>Non-Veg Preference</span>
+            <strong id="nonVegStudentsCount">0</strong>
+            <small>Students on non-veg plan</small>
+            <div class="stat-progress"><span></span></div>
+          </article>
+        </section>
+
+        <section class="admin-content-grid">
+          <section class="admin-card analytics-card">
+            <div class="section-head">
+              <div>
+                <h3>Meal Activity Trend</h3>
+                <p class="section-copy">A visual summary inspired by daily hostel flow and attendance rhythm.</p>
+              </div>
+              <div class="segment-tabs">
+                <button class="segment-btn active" type="button">Day</button>
+                <button class="segment-btn" type="button">Week</button>
+                <button class="segment-btn" type="button">Month</button>
+              </div>
+            </div>
+            <div class="mock-chart modern-chart">
+              <div class="chart-legend">
+                <span><i class="legend-dot green"></i> Student movement</span>
+                <span><i class="legend-dot soft"></i> Meal activity</span>
+              </div>
+              <div class="chart-grid-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="chart-areas">
+                <div class="chart-area chart-area-one"></div>
+                <div class="chart-area chart-area-two"></div>
+              </div>
+              <div class="chart-dots">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="chart-labels">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-card side-insight-card" id="reportsSection">
+            <div class="section-head stacked">
+              <div>
+                <h3>Daily PDF Reports</h3>
+                <p class="section-copy">Quick lunch and dinner exports for office use and kitchen planning.</p>
+              </div>
+            </div>
+            <div class="report-stack">
+              <label class="field-stack">
+                <span>Select Date</span>
+                <input id="reportDate" type="date" />
+              </label>
+              <button id="downloadLunchReportBtn" class="primary-btn" type="button">Download Lunch PDF</button>
+              <button id="downloadDinnerReportBtn" class="primary-btn alt" type="button">Download Dinner PDF</button>
+            </div>
+            <div class="mini-bars modern-bars">
+              <span style="height: 44%"></span>
+              <span style="height: 72%"></span>
+              <span style="height: 58%"></span>
+              <span style="height: 84%"></span>
+              <span style="height: 36%"></span>
+              <span style="height: 63%"></span>
+              <span style="height: 78%"></span>
+            </div>
+          </section>
+
+          <section class="admin-card side-insight-card" id="mealRateSection">
+            <div class="section-head stacked">
+              <div>
+                <h3>Monthly Meal Rate</h3>
+                <p class="section-copy">Set the per-meal rate for any month. Student bills will use this month-wise rate automatically.</p>
+              </div>
+            </div>
+            <div class="report-stack">
+              <label class="field-stack">
+                <span>Select Month</span>
+                <input id="mealRateMonth" type="month" />
+              </label>
+              <label class="field-stack">
+                <span>Per Meal Rate</span>
+                <input id="mealRateValue" type="number" min="0" step="0.01" placeholder="Enter meal rate" />
+              </label>
+              <button id="saveMealRateBtn" class="primary-btn" type="button">Save Meal Rate</button>
+            </div>
+            <div class="meta-card">
+              <span>Current Saved Rate</span>
+              <strong id="currentMealRateValue">Rs 0.00</strong>
+            </div>
+            <div class="table-wrap meal-rate-table-wrap">
+              <table class="admin-table meal-rate-table">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Rate Per Meal</th>
+                    <th>Reset</th>
+                  </tr>
+                </thead>
+                <tbody id="mealRatesTableBody">
+                  <tr>
+                    <td colspan="3">No meal rates saved yet</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-lower-grid">
+          <section class="admin-card meal-control-panel" id="mealControlSection">
+            <div class="section-head">
+              <div>
+                <h3>Bulk Meal Control</h3>
+                <p class="section-copy">Turn meals on or off for all approved students, one student, or selected students across flexible date scopes. Permanent OFF locks meals off. Restore ON removes that lock and turns meals back on.</p>
+              </div>
+            </div>
+
+            <div class="meal-control-grid">
+              <label class="field-stack">
+                <span>Target Type</span>
+                <select id="mealTargetMode">
+                  <option value="all">All Approved Students</option>
+                  <option value="single">One Student</option>
+                  <option value="selected">Selected Students</option>
+                </select>
+              </label>
+
+              <label class="field-stack" id="singleStudentField">
+                <span>Student</span>
+                <select id="mealControlStudentId">
+                  <option value="">Select student</option>
+                </select>
+              </label>
+
+              <label class="field-stack">
+                <span>Meal Scope</span>
+                <select id="mealScope">
+                  <option value="both">Lunch + Dinner</option>
+                  <option value="lunch">Lunch Only</option>
+                  <option value="dinner">Dinner Only</option>
+                </select>
+              </label>
+
+              <label class="field-stack">
+                <span>Action</span>
+                <select id="mealAction">
+                  <option value="off">Turn OFF</option>
+                  <option value="on">Turn ON</option>
+                  <option value="permanent_off">Permanent OFF (Lock)</option>
+                  <option value="permanent_on">Remove Permanent OFF / Restore ON</option>
+                </select>
+              </label>
+
+              <label class="field-stack">
+                <span>Date Scope</span>
+                <select id="mealScopeMode">
+                  <option value="day">Single Day</option>
+                  <option value="month">Single Month</option>
+                  <option value="month_range">Month Range</option>
+                  <option value="date_range">Date Range</option>
+                  <option value="selected_days">Selected Days</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="meal-control-dates">
+              <label class="field-stack" id="scopeDayField">
+                <span>Day</span>
+                <input id="scopeDay" type="date" />
+              </label>
+
+              <label class="field-stack hidden" id="scopeMonthField">
+                <span>Month</span>
+                <input id="scopeMonth" type="month" />
+              </label>
+
+              <label class="field-stack hidden" id="scopeFromMonthField">
+                <span>From Month</span>
+                <input id="scopeFromMonth" type="month" />
+              </label>
+
+              <label class="field-stack hidden" id="scopeToMonthField">
+                <span>To Month</span>
+                <input id="scopeToMonth" type="month" />
+              </label>
+
+              <label class="field-stack hidden" id="scopeFromDateField">
+                <span>From Date</span>
+                <input id="scopeFromDate" type="date" />
+              </label>
+
+              <label class="field-stack hidden" id="scopeToDateField">
+                <span>To Date</span>
+                <input id="scopeToDate" type="date" />
+              </label>
+
+              <div class="field-stack hidden" id="selectedDaysField">
+                <span>Selected Days</span>
+                <div class="selected-days-tools">
+                  <input id="selectedDayInput" type="date" />
+                  <button id="addSelectedDayBtn" class="ghost-light-btn" type="button">Add Day</button>
+                  <button id="clearSelectedDaysBtn" class="ghost-light-btn" type="button">Clear</button>
+                </div>
+                <div id="selectedDaysChips" class="selected-days-chips"></div>
+              </div>
+            </div>
+
+            <div class="meal-control-footer">
+              <p id="selectedStudentsInfo" class="section-copy">Selected students: 0</p>
+              <button id="applyMealControlBtn" class="primary-btn" type="button">Apply Meal Control</button>
+            </div>
+          </section>
+
+          <section class="admin-card compact-note-panel">
+            <div class="section-head stacked">
+              <div>
+                <h3>Operations Guide</h3>
+                <p class="section-copy">Fast reminders for using the control panel correctly.</p>
+              </div>
+            </div>
+            <div class="note-list">
+              <div class="note-item">
+                <strong>Approve before access</strong>
+                <span>Pending students get dashboard access only after approval.</span>
+              </div>
+              <div class="note-item">
+                <strong>Permanent OFF means lock</strong>
+                <span>Students cannot re-enable locked meals until admin restores them.</span>
+              </div>
+              <div class="note-item">
+                <strong>Restore ON removes lock</strong>
+                <span>Use restore when you want the student to manage meals again.</span>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-card student-records-panel" id="studentsSection">
+          <div class="section-head">
+            <div>
+              <h3>Student Meal Records</h3>
+              <p class="section-copy">Sorted by room number, with bed A before bed B.</p>
+            </div>
+            <div class="admin-tools compact">
+              <input id="adminSearch" type="text" placeholder="Search by name, email, room or roll..." />
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Room</th>
+                  <th>Roll</th>
+                  <th>Preference</th>
+                  <th>Status</th>
+                  <th>Completed Meals</th>
+                    <th>Today Planned</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-card day-search-panel" id="daySearchSection">
+          <div class="section-head calendar-head">
+            <div>
+              <h3>Search Meal Summary By Date</h3>
+              <p class="section-copy">Pick one date to see total meals, veg meals, non-veg meals, and download both PDF reports.</p>
+            </div>
+            <div class="day-search-toolbar">
+              <input id="daySearchDate" type="date" />
+              <button id="searchDayBtn" class="primary-btn" type="button">Search Day</button>
+            </div>
+          </div>
+          <div class="day-summary-grid">
+            <article class="day-summary-card">
+              <span>Total Meals</span>
+              <strong id="dayTotalMeals">0</strong>
+              <small>All enabled meals on selected date</small>
+            </article>
+            <article class="day-summary-card">
+              <span>Veg Meals</span>
+              <strong id="dayVegMeals">0</strong>
+              <small>Veg count on selected date</small>
+            </article>
+            <article class="day-summary-card">
+              <span>Non-Veg Meals</span>
+              <strong id="dayNonVegMeals">0</strong>
+              <small>Non-veg count on selected date</small>
+            </article>
+          </div>
+          <div class="day-search-actions">
+            <button id="dayLunchPdfBtn" class="primary-btn" type="button">Lunch PDF</button>
+            <button id="dayDinnerPdfBtn" class="primary-btn alt" type="button">Dinner PDF</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="admin-footer" id="footerSection">
+      <div class="admin-footer-main">
+        <div class="admin-footer-block">
+          <h3>mahima chatrabas</h3>
+          <p>Centralized hostel administration with student records, meal control visibility, and report generation.</p>
+        </div>
+        <div class="admin-footer-block">
+          <h3>Quick Links</h3>
+          <div class="admin-footer-links">
+            <a href="#overview">Overview</a>
+            <a href="#studentsSection">Students</a>
+            <a href="#reportsSection">Reports</a>
+            <a href="./index.html">Home</a>
+          </div>
+        </div>
+        <div class="admin-footer-block">
+          <h3>Contact</h3>
+          <p>Email: support@mahimachatrabas.local</p>
+          <p>Location: Dhenkanal, Odisha, India</p>
+        </div>
+      </div>
+      <div class="admin-footer-bottom">
+        <p>(c) 2026 MAHIMA CHATRABAS | All rights reserved</p>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="./config.js"></script>
+    <script src="./admin-dashboard.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
