@@ -18,7 +18,7 @@
       <p>Loading...</p>
     </div>
 
-    <header class="topbar glass">
+    <header class="topbar glass" id="topbar">
       <div class="brand">
         <div class="brand-mark">
           <img src="./assets/logo.jpg" alt="Mahima logo" />
@@ -26,19 +26,27 @@
         <span>mahima chatrabas</span>
       </div>
 
-      <nav class="nav-links">
-        <a class="nav-pill active" href="#home">Home</a>
-        <a class="nav-pill" href="#about">About</a>
-        <a class="nav-pill" href="#facilities">Facilities</a>
-        <a class="nav-pill" href="#rules">Rules</a>
-        <a class="nav-pill" href="#contact">Contact</a>
-      </nav>
+      <button id="mobileMenuToggle" class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <div class="topbar-actions">
-        <button id="themeToggle" class="btn pill ghost">Theme</button>
-        <a class="btn pill ghost" href="./admin-login.html">Admin</a>
-        <a class="btn pill ghost" href="./representative-login.html">Representative</a>
-        <a class="btn pill primary" href="./signin.html">Login</a>
+      <div class="topbar-menu" id="topbarMenu">
+        <nav class="nav-links">
+          <a class="nav-pill active" href="#home">Home</a>
+          <a class="nav-pill" href="#about">About</a>
+          <a class="nav-pill" href="#facilities">Facilities</a>
+          <a class="nav-pill" href="#rules">Rules</a>
+          <a class="nav-pill" href="#contact">Contact</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <button id="themeToggle" class="btn pill ghost">Theme</button>
+          <a class="btn pill ghost" href="./admin-login.html">Admin</a>
+          <a class="btn pill ghost" href="./representative-login.html">Representative</a>
+          <a class="btn pill primary" href="./signin.html">Login</a>
+        </div>
       </div>
     </header>
 

@@ -1,5 +1,7 @@
 const loader = document.getElementById("loader");
 const themeToggle = document.getElementById("themeToggle");
+const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+const topbar = document.getElementById("topbar");
 const toastContainer = document.getElementById("toastContainer");
 const searchInput = document.querySelector(".hero-search input");
 const searchButton = document.querySelector(".search-btn");
@@ -26,6 +28,19 @@ function setTheme(mode) {
 function handleThemeToggle() {
   const current = document.body.classList.contains("light") ? "light" : "dark";
   setTheme(current === "light" ? "dark" : "light");
+}
+
+
+function closeMobileMenu() {
+  if (!topbar || !mobileMenuToggle) return;
+  topbar.classList.remove("menu-open");
+  mobileMenuToggle.setAttribute("aria-expanded", "false");
+}
+
+function toggleMobileMenu() {
+  if (!topbar || !mobileMenuToggle) return;
+  const isOpen = topbar.classList.toggle("menu-open");
+  mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
 }
 
 function searchSections() {
@@ -64,6 +79,20 @@ function searchSections() {
   if (themeToggle) {
     themeToggle.addEventListener("click", handleThemeToggle);
   }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", toggleMobileMenu);
+  }
+
+  document.querySelectorAll(".nav-links a, .topbar-actions a, .topbar-actions button").forEach((item) => {
+    item.addEventListener("click", () => {
+      if (item !== mobileMenuToggle) closeMobileMenu();
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) closeMobileMenu();
+  });
 
   if (searchButton) {
     searchButton.addEventListener("click", searchSections);
