@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require("uuid");
 
 let mongoReady = false;
 let UserModel;
-let OtpModel;
 let MealRateModel;
 let RepresentativeLogModel;
 
@@ -12,7 +11,7 @@ function shouldUseMongo() {
 }
 
 function defineModels() {
-  if (UserModel && OtpModel && MealRateModel && RepresentativeLogModel) return;
+  if (UserModel && MealRateModel && RepresentativeLogModel) return;
 
   const mealSchema = new mongoose.Schema(
     {
@@ -59,15 +58,6 @@ function defineModels() {
 
   userSchema.index({ roomNumber: 1, bed: 1 }, { unique: true });
 
-  const otpSchema = new mongoose.Schema({
-    id: { type: String, default: uuidv4, unique: true, index: true },
-    email: { type: String, required: true, lowercase: true, trim: true, index: true },
-    codeHash: { type: String, required: true },
-    expiresAt: { type: Date, required: true, index: true },
-    used: { type: Boolean, default: false, index: true },
-    createdAt: { type: Date, default: Date.now, index: true }
-  });
-
   const mealRateSchema = new mongoose.Schema({
     monthKey: { type: String, required: true, unique: true, index: true },
     rate: { type: Number, required: true, min: 0 },
@@ -83,7 +73,6 @@ function defineModels() {
   });
 
   UserModel = mongoose.models.User || mongoose.model("User", userSchema);
-  OtpModel = mongoose.models.Otp || mongoose.model("Otp", otpSchema);
   MealRateModel = mongoose.models.MealRate || mongoose.model("MealRate", mealRateSchema);
   RepresentativeLogModel = mongoose.models.RepresentativeLog || mongoose.model("RepresentativeLog", representativeLogSchema);
 }
@@ -110,7 +99,7 @@ function isMongoReady() {
 function getMongoModels() {
   if (!mongoReady) return null;
   defineModels();
-  return { UserModel, OtpModel, MealRateModel, RepresentativeLogModel };
+  return { UserModel, MealRateModel, RepresentativeLogModel };
 }
 
 module.exports = {
