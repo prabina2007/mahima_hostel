@@ -1,8 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
-const otpModel = require("../models/otpModel");
-const { sendOtpEmail } = require("../utils/email");
 
 function issueToken(payload) {
   return jwt.sign(payload, process.env.JWT_SECRET || "dev-secret", {
@@ -28,24 +26,6 @@ function sanitizeUser(user) {
   };
 }
 
-async function requestOtp(req, res) {
-  try {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ message: "Email is required" });
-
-    const existing = await userModel.findByEmail(email);
-    if (existing) return res.status(409).json({ message: "Email already registered" });
-
-    const code = String(Math.floor(100000 + Math.random() * 900000));
-    await otpModel.createOtp(email, code);
-    await sendOtpEmail({ to: email, code });
-
-    return res.json({ message: "OTP sent successfully" });
-  } catch (error) {
-    return res.status(500).json({ message: "Failed to send OTP", error: error.message });
-  }
-}
-
 async function signup(req, res) {
   try {
     const {
@@ -56,11 +36,10 @@ async function signup(req, res) {
       bed,
       rollNumber,
       password,
-      defaultPreference,
-      otp
+      defaultPreference
     } = req.body;
 
-    if (!studentName || !email || !phoneNumber || !roomNumber || !bed || !rollNumber || !password || !otp) {
+    if (!studentName || !email || !phoneNumber || !roomNumber || !bed || !rollNumber || !password) {
       return res.status(400).json({ message: "All required fields must be provided" });
     }
 
@@ -78,9 +57,6 @@ async function signup(req, res) {
 
     const roomBedExists = await userModel.findByRoomBed(roomNumber, bed);
     if (roomBedExists) return res.status(409).json({ message: "Room and bed already occupied" });
-
-    const otpValid = await otpModel.consumeValidOtp(email, String(otp).trim());
-    if (!otpValid) return res.status(400).json({ message: "Invalid or expired OTP" });
 
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await userModel.createUser({
@@ -167,7 +143,6 @@ async function representativeLogin(req, res) {
 }
 
 module.exports = {
-  requestOtp,
   signup,
   login,
   me,

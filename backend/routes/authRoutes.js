@@ -4,7 +4,6 @@ const { authRequired } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/request-otp", authController.requestOtp);
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 router.post("/admin-login", authController.adminLogin);

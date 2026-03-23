@@ -53,23 +53,6 @@ async function handleStudentLogin(form) {
 }
 
 async function handleSignup(form) {
-  const requestOtpBtn = document.getElementById("requestOtpBtn");
-  if (requestOtpBtn) {
-    requestOtpBtn.addEventListener("click", async () => {
-      try {
-        const email = form.elements.email.value.trim();
-        if (!email) {
-          toast("Enter email first", true);
-          return;
-        }
-        await api("/auth/request-otp", { method: "POST", body: { email } });
-        toast("OTP sent to your email");
-      } catch (error) {
-        toast(error.message, true);
-      }
-    });
-  }
-
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
