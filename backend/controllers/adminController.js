@@ -498,7 +498,7 @@ async function dailyReport(req, res) {
         message:
           meal === "lunch"
             ? "Lunch report is available after 08:00 AM for current day"
-            : "Dinner report is available after 02:00 PM for current day"
+            : "Dinner report is available after 03:00 PM for current day"
       });
     }
 

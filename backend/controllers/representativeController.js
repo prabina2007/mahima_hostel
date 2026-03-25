@@ -41,7 +41,7 @@ function isRepresentativeMealVisible(dateKey, meal) {
 
   const now = new Date();
   const cutoff = new Date();
-  cutoff.setHours(meal === 'lunch' ? 8 : 14, meal === 'lunch' ? 0 : 30, 0, 0);
+  cutoff.setHours(meal === 'lunch' ? 8 : 15, 0, 0, 0);
   return now >= cutoff;
 }
 
@@ -144,7 +144,7 @@ async function updateMealTaken(req, res) {
       return res.status(400).json({
         message: meal === 'lunch'
           ? 'Lunch status becomes available after 08:00 AM'
-          : 'Dinner status becomes available after 02:30 PM'
+          : 'Dinner status becomes available after 03:00 PM'
       });
     }
 
@@ -180,7 +180,7 @@ async function dailyPdf(req, res) {
       return res.status(400).json({
         message: meal === 'lunch'
           ? 'Lunch PDF is available after 08:00 AM for current day'
-          : 'Dinner PDF is available after 02:30 PM for current day'
+          : 'Dinner PDF is available after 03:00 PM for current day'
       });
     }
 

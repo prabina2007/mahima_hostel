@@ -20,7 +20,7 @@ function isMealUpdateAllowed(dateKey, mealType) {
 
   const now = new Date();
   const cutoff = new Date();
-  cutoff.setHours(mealType === "lunch" ? 8 : 14, mealType === "lunch" ? 0 : 30, 0, 0);
+  cutoff.setHours(mealType === "lunch" ? 8 : 15, 0, 0, 0);
   return now < cutoff;
 }
 
@@ -31,7 +31,7 @@ function isAdminReportAllowed(dateKey, mealType) {
 
   const now = new Date();
   const cutoff = new Date();
-  cutoff.setHours(mealType === "lunch" ? 8 : 14, 0, 0, 0);
+  cutoff.setHours(mealType === "lunch" ? 8 : 15, 0, 0, 0);
   return now >= cutoff;
 }
 
