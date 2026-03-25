@@ -200,6 +200,11 @@ function getCompletedMonthEndKey(viewDate) {
   return `${yesterday.getFullYear()}-${pad(yesterday.getMonth() + 1)}-${pad(yesterday.getDate())}`;
 }
 
+function getMealCutoffLabel(mealType, canToggle) {
+  const cutoff = mealType === "lunch" ? "8:00 AM" : "3:00 PM";
+  return canToggle ? `Open until ${cutoff}` : `Closed after ${cutoff}`;
+}
+
 function applyProfile(user) {
   const initials = user.studentName
     .split(" ")
@@ -232,9 +237,9 @@ function updateTodayControls(day) {
   els.todayDinnerEnabled.checked = !!day.dinner.enabled;
   els.todayDinnerType.value = day.dinner.type;
 
-  els.todayLunchStatus.textContent = day.canToggleLunch ? "Open now" : "Locked";
+  els.todayLunchStatus.textContent = getMealCutoffLabel("lunch", day.canToggleLunch);
   els.todayLunchStatus.classList.toggle("locked", !day.canToggleLunch);
-  els.todayDinnerStatus.textContent = day.canToggleDinner ? "Open now" : "Locked";
+  els.todayDinnerStatus.textContent = getMealCutoffLabel("dinner", day.canToggleDinner);
   els.todayDinnerStatus.classList.toggle("locked", !day.canToggleDinner);
 
   els.todayLunchEnabled.disabled = !day.canToggleLunch;
@@ -334,7 +339,7 @@ function buildDayCard(day) {
       <input class="meal-toggle" data-meal="dinner" type="checkbox" ${day.dinner.enabled ? "checked" : ""} />
     </div>
     <div class="calendar-actions">
-      <span class="day-note">${day.canToggleLunch || day.canToggleDinner ? "Editable by cutoff time" : "Locked for editing"}</span>
+      <span class="day-note">${day.canToggleLunch || day.canToggleDinner ? "Lunch closes at 8:00 AM, dinner closes at 3:00 PM" : "Locked after the meal cutoff time"}</span>
       <button class="save-day-btn">Save</button>
     </div>
   `;
