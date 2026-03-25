@@ -2,7 +2,7 @@ const PDFDocument = require('pdfkit');
 const userModel = require('../models/userModel');
 const representativeLogModel = require('../models/representativeLogModel');
 const { getDayMeal, getMealStartKey } = require('./mealController');
-const { parseDateKey, toDateKey } = require('../utils/date');
+const { isAdminReportAllowed, parseDateKey, toDateKey } = require('../utils/date');
 
 function compareRoomBed(a, b) {
   const roomA = Number.parseInt(a.roomNumber, 10);
@@ -36,13 +36,7 @@ function resolveTodayDateKey(inputDate) {
 }
 
 function isRepresentativeMealVisible(dateKey, meal) {
-  const todayKey = toDateKey(new Date());
-  if (dateKey !== todayKey) return false;
-
-  const now = new Date();
-  const cutoff = new Date();
-  cutoff.setHours(meal === 'lunch' ? 8 : 15, 0, 0, 0);
-  return now >= cutoff;
+  return isAdminReportAllowed(dateKey, meal);
 }
 
 function buildStudentRow(user, dateKey, logEntries) {
