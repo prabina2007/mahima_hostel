@@ -263,6 +263,44 @@ body.light .glass {
   font-size: 1rem;
 }
 
+.hero-clock {
+  margin: 24px auto 0;
+  width: fit-content;
+  min-width: 220px;
+  display: grid;
+  gap: 6px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 14, 12, 0.32);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.clock-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(123, 242, 161, 0.88);
+  font-weight: 700;
+}
+
+.hero-clock strong {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1;
+  color: #ffffff;
+}
+
+.clock-date {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.92rem;
+}
+
+body.light .hero-clock {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
 .hero-actions {
   margin-top: 34px;
   display: flex;
@@ -755,6 +793,14 @@ td {
     line-height: 1.55;
   }
 
+  .hero-clock {
+    margin-top: 18px;
+    min-width: 0;
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 14px;
+  }
+
   .hero-actions {
     margin-top: 22px;
     display: grid;
@@ -819,6 +865,14 @@ td {
 
   .hero {
     padding: 208px 12px 28px;
+  }
+
+  .hero-clock strong {
+    font-size: 1.3rem;
+  }
+
+  .clock-date {
+    font-size: 0.84rem;
   }
 
   .hero-content h1 {
