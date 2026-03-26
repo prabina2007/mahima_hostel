@@ -5,8 +5,6 @@ const topbar = document.getElementById("topbar");
 const toastContainer = document.getElementById("toastContainer");
 const searchInput = document.querySelector(".hero-search input");
 const searchButton = document.querySelector(".search-btn");
-const heroClockTime = document.getElementById("heroClockTime");
-const heroClockDate = document.getElementById("heroClockDate");
 
 function showLoader(show) {
   if (loader) loader.classList.toggle("hidden", !show);
@@ -43,35 +41,6 @@ function toggleMobileMenu() {
   if (!topbar || !mobileMenuToggle) return;
   const isOpen = topbar.classList.toggle("menu-open");
   mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
-}
-
-function startHeroClock() {
-  if (!heroClockTime || !heroClockDate) return;
-
-  const timeFormatter = new Intl.DateTimeFormat("en-IN", {
-    timeZone: "Asia/Kolkata",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true
-  });
-
-  const dateFormatter = new Intl.DateTimeFormat("en-IN", {
-    timeZone: "Asia/Kolkata",
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  });
-
-  const tick = () => {
-    const now = new Date();
-    heroClockTime.textContent = timeFormatter.format(now);
-    heroClockDate.textContent = `${dateFormatter.format(now)} - IST`;
-  };
-
-  tick();
-  setInterval(tick, 1000);
 }
 
 function searchSections() {
@@ -125,7 +94,6 @@ function searchSections() {
     if (window.innerWidth > 760) closeMobileMenu();
   });
 
-  startHeroClock();
 
   if (searchButton) {
     searchButton.addEventListener("click", searchSections);
